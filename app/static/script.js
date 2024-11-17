@@ -12,11 +12,16 @@ function checkLoginStatus() {
   fetch('/is_logged_in', { method: 'GET' })
       .then(response => response.json())
       .then(data => {
-          if (data.loggedIn) {
-              window.location.href = '/matches';
-          } else {
-              window.location.href = '/login';
-          }
+        if (data.loggedIn) {
+          const studentId = data.studentId;
+            if (studentId) {
+              window.location.href = `/matches/${studentId}`;
+            } else {
+              alert('Student ID not found. Please try again.');
+            }
+      } else {
+          window.location.href = '/login';
+      }
       })
       .catch(error => {
           console.error('Error checking login status:', error);

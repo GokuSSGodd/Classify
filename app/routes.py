@@ -264,7 +264,7 @@ def signup(student_id):
 @main.route('/is_logged_in', methods=['GET'])
 def is_logged_in():
     if 'student_id' in session:
-        return {'loggedIn': True}, 200
+        return {'loggedIn': True, 'studentId': session['student_id']}, 200
     else:
         return {'loggedIn': False}, 200
     
