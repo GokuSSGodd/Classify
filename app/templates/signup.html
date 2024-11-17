@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <h1>Signup</h1>
+    <p class="signup-subtitle">Create your profile to get personalized course and professor recommendations.</p>
+    <form id="student-info-form" method="post" action="{{ url_for('main.signup', student_id=student_id) }}" class="signup-form">
+        <input type="hidden" id="student-id" name="student_id" value="{{ student_id }}">
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="class-year">Class Year:</label>
+            <input type="number" id="class-year" name="class_year" placeholder="Enter your class year" required>
+        </div>
+
+        <div class="form-group">
+            <label for="majors-input">Majors:</label>
+            <input type="text" id="majors-input" placeholder="Start typing to search..." autocomplete="off">
+            <ul id="majors-suggestions" class="suggestions-list"></ul>
+            <div id="majors-selected" class="selected-container"></div>
+            <input type="hidden" name="majors" id="majors-hidden" value="{{ request.form.get('majors', '') }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="previous-classes-input">Previous Classes:</label>
+            <input type="text" id="previous-classes-input" placeholder="Start typing to search..." autocomplete="off">
+            <ul id="previous-classes-suggestions" class="suggestions-list"></ul>
+            <div id="previous-classes-selected" class="selected-container"></div>
+            <input type="hidden" name="previous_classes" id="previous-classes-hidden" value="{{ request.form.get('previous_classes', '') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="clubs">Clubs:</label>
+            <textarea id="clubs" name="clubs" placeholder="List any clubs you're part of, separated by commas..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="interests">Interests:</label>
+            <input type="text" id="interests" name="interests" placeholder="Your academic or personal interests...">
+        </div>
+
+        <fieldset class="preferences">
+            <legend>Assignment Preferences:</legend>
+            <label><input type="checkbox" name="assignment_preferences" value="Group Work"> Group Work</label>
+            <label><input type="checkbox" name="assignment_preferences" value="Individual Work"> Individual Work</label>
+            <label><input type="checkbox" name="assignment_preferences" value="Exams"> Exams</label>
+            <label><input type="checkbox" name="assignment_preferences" value="Papers"> Papers</label>
+            <label><input type="checkbox" name="assignment_preferences" value="Projects"> Projects</label>
+        </fieldset>
+
+        <fieldset class="preferences">
+            <legend>Class Time Preferences:</legend>
+            <label><input type="checkbox" name="class_time_preferences" value="Morning"> Morning</label>
+            <label><input type="checkbox" name="class_time_preferences" value="Afternoon"> Afternoon</label>
+            <label><input type="checkbox" name="class_time_preferences" value="Evening"> Evening</label>
+        </fieldset>
+
+        <button type="submit" class="signup-btn">Submit</button>
+    </form>
+</div>
+<script src="{{ url_for('static', filename='autocomplete.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Matches{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='matches.css') }}">
+<div class="matches-container">
+    <h1>Recommended Courses</h1>
+    <div class="matches-grid">
+        {% for match in matches %}
+        <div class="class-item" data-id="{{ match.course_id }}" data-score="{{ match.match_score }}">
+            <h3>{{ match.course_name }}</h3>
+            <p>Professor: {{ match.professor_name }}</p>
+            <p>Course Code: {{ match.course_code }}</p>
+            <p>Match Score: {{ match.match_score }}</p>
+            <div class="gradient-bar-container">
+                <div class="gradient-bar"></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="class-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-class-name"></h2>
+        <p id="modal-course-code"></p>
+        <p id="modal-professor-name"></p>
+        <p id="modal-semester"></p>
+        <h3>Sections:</h3>
+        <ul id="modal-sections-list"></ul>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='matches.js') }}" defer></script>
+
+{% endblock %}

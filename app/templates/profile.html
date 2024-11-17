@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Student Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Student Profile</h1>
+    <form id="student-info-form" action="/save_profile" method="POST">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ student.name if student else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="class_year">Class Year:</label>
+            <input type="number" id="class_year" name="class_year" value="{{ student.class_year if student else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="majors-input">Majors:</label>
+            <input type="text" id="majors-input" placeholder="Start typing to search..." autocomplete="off">
+            <ul id="majors-suggestions" class="suggestions-list"></ul>
+            <div id="majors-selected" class="selected-container"></div>
+            <input type="hidden" name="majors" id="majors-hidden" value="{{ student.major }}">
+        </div>
+        
+        <!-- Previous Classes -->
+        <div class="form-group">
+            <label for="previous-classes-input">Previous Classes:</label>
+            <input type="text" id="previous-classes-input" placeholder="Start typing to search..." autocomplete="off">
+            <ul id="previous-classes-suggestions" class="suggestions-list"></ul>
+            <div id="previous-classes-selected" class="selected-container"></div>
+            <input type="hidden" name="previous_classes" id="previous-classes-hidden" value="{{ request.form.get('previous_classes', '') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="interests">Interests:</label>
+            <textarea id="interests" name="interests" rows="4">{{ student.interests if student else '' }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="clubs">Clubs:</label>
+            <textarea id="clubs" name="clubs" rows="4">{{ student.clubs if student else '' }}</textarea>
+        </div>
+
+        <button type="submit" class="signup-btn">Submit</button>
+    </form>
+</div>
+<script>
+    const majorsSelected = document.getElementById('majors-selected');
+    const majorsHidden = document.getElementById('majors-hidden');
+    const previousClassesSelected = document.getElementById('previous-classes-selected');
+    const previousClassesHidden = document.getElementById('previous-classes-hidden');
+</script>
+<script src="{{ url_for('static', filename='autocomplete.js') }}" defer></script>
+{% endblock %}

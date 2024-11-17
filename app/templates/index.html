@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Classify{% endblock %}
+
+{% block content %}
+<h1 class="title-Classify">Classify</h1>
+<h2 class="eyecatcher">Your Personalized Class and Professor Recommendation Tool</h2>
+
+<h3 class="section-header">Key Features</h3>
+<div class="features">
+    <div class="feature-item">
+        <h4>🎓 Personalized Recommendations</h4>
+        <p>Tailored course suggestions based on your interests</p>
+    </div>
+    <div class="feature-item">
+        <h4>⭐ Professor Ratings</h4>
+        <p>Find professors with high ratings for grading, fun, and engagement</p>
+    </div>
+    <div class="feature-item">
+        <h4>📋 User-Friendly Profiles</h4>
+        <p>Create and manage your academic profile with ease</p>
+    </div>
+</div>
+
+<h3 class="section-header">Steps to Get Started</h3>
+<div class="steps-container">
+    <div class="step-wrapper">
+        <div class="step">
+            <h2>1</h2>
+            <p>Sign Up</p>
+        </div>
+        <div class="arrow">→</div>
+    </div>
+    <div class="step-wrapper">
+        <div class="step">
+            <h2>2</h2>
+            <p>Create a Profile</p>
+        </div>
+        <div class="arrow">→</div>
+    </div>
+    <div class="step-wrapper">
+        <div class="step">
+            <h2>3</h2>
+            <p>Find Courses</p>
+        </div>
+    </div>
+</div>
+
+<div class="action-buttons">
+    <button class="generate-btn" onclick="checkLoginStatus()">Generate My Matches</button>
+    <button class="sign-in-btn" onclick="window.location.href='login';">Sign In</button>
+</div>
+{% endblock %}

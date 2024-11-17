@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h1>Login</h1>
+    <p class="login-subtitle">Access your personalized course and professor recommendations.</p>
+    <form method="post" class="login-form">
+        <label for="student_id">Student ID:</label>
+        <input type="text" id="student_id" name="student_id" placeholder="Enter your Student ID" required>
+        <button type="submit" class="login-btn">Login</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Classify{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+<body class="indexbody">
+    <div id="mySidebar" class="sidebar">
+        <a href="{{ url_for('main.main_page') }}">Home</a>
+        <a href="{{ url_for('main.student_profile') }}">Profile</a>
+        <a href="{{ url_for('main.matches', student_id=session.get('student_id', 0)) }}">Find My Match</a>
+        <a href="javascript:void(0)" onclick="closeSidebar()">Close &times;</a>
+    </div>
+
+    <button class="open-btn" onclick="openSidebar()">☰</button>
+
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
